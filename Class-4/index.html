@@ -4,19 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title>Tarjetas de Producto</title>
-    <style>
-        
-    </style>
+    <title>Tarjetas de Producto & Gradientes</title>
 </head>
-
 <body>
 
-    <div class="cards-container">
+    <!-- 1. Hero encima de las tarjetas -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Descubre Nuestra Colección</h1>
+            <p>Los mejores productos con tecnología y diseño urbano.</p>
+            <!-- 2. Botón principal con radial-gradient -->
+            <a href="#" class="btn-reservar">Reservar Ahora</a>
+        </div>
+    </section>
 
-        <!-- ==========================================
-        TARJETA 1 – Auriculares Inalámbricos
-        ========================================== -->
+    <!-- Tarjetas del ejercicio de Clase 4 -->
+    <main class="cards-container">
+
+        <!-- TARJETA 1 -->
         <div class="product-card highlight">
             <div class="card-image">🎧</div>
             <h2 class="product-name">Auriculares Pro</h2>
@@ -29,9 +34,7 @@
             <button class="btn-comprar">Comprar</button>
         </div>
 
-        <!-- ==========================================
-        TARJETA 2 – Reloj Inteligente
-        ========================================== -->
+        <!-- TARJETA 2 -->
         <div class="product-card highlight">
             <div class="card-image">⌚</div>
             <h2 class="product-name">Smartwatch Fit</h2>
@@ -44,14 +47,12 @@
             <button class="btn-comprar">Comprar</button>
         </div>
 
-        <!-- ==========================================
-        TARJETA 3 – Mochila Urbana
-        ========================================== -->
+        <!-- TARJETA 3 -->
         <div class="product-card highlight">
             <div class="card-image">🎒</div>
             <h2 class="product-name">Mochila Urban</h2>
             <p class="product-desc">
-                Impermeable, con compartimento para laptop de 15&quot;.
+                Impermeable, con compartimento para laptop de 15".
             </p>
             <div class="product-price">
                 $59.50 <small>USD</small>
@@ -59,7 +60,12 @@
             <button class="btn-comprar">Comprar</button>
         </div>
 
-    </div>
+    </main>
+
+    <!-- 3. Pie de página con linear-gradient de 3 colores -->
+    <footer class="footer">
+        <p>&copy; 2026 TechStore. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>

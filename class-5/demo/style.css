@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hero{
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.10),
+            rgba(0,0,0,0.72)
+        ),
+        url("assets/Cafe.jpg");
+
+    background-size: cover;
+    background-position: center;
+    min-height: 480px;
+    width: 100%;
+    color: white;
+    padding: 48px;
+}
+
+.btn-reservar{
+    display: inline-block;
+    background: radial-gradient(circle, #ed7a26, #6c3);
+}
