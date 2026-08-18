@@ -1,0 +1,90 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0b3d91, #145da0);
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+h1{
+    margin-bottom: 4px;
+}
+
+p{
+    opacity: 0.8;
+    margin-top: 0;
+}
+
+.stage{
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.card{
+    background: rgba(0, 0, 0, 0.25);
+    border: 2px solid #ffd23f;
+    text-align: center;
+    border-radius: 12px;
+    width: 200px;
+    padding: 10px;
+}
+
+/*@keyframes definimos la animacion como girar*/
+@keyframes girar{
+    from{transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@keyframes deslizar{
+    from {transform: translateX(-40px); opacity: 0; }
+    to {transform: translateX(0); opacity: 1; }
+} 
+
+@keyframes pulso{
+    0% , 100% {transform: scale(1); opacity: 1; }
+    50% {transform: scale(1.06); opacity: 0; }
+}
+
+@keyframes subir{
+    from{transform: translateY(30px); opacity: 0;}
+    to{transform: translateY(0); opacity: 1;}
+}
+
+img{
+    width: 160px;
+}
+
+
+
+/*Opcion Shortand*/
+.icono{
+    animation: girar 1.2s linear 0s infinite normal forwards;
+}
+
+.icono-separado{
+    animation-name:pulso;
+    animation-duration: 1.2s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+/*Opcion 3 deslizar*/
+
+.card{
+    animation: aubir 1s ease forwards;
+}
