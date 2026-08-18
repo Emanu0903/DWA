@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/DWA/class-9/style.css">
+  <title>Tienda Flexbox</title>
+</head>
+<body>
+
+  <header class="header">
+    <span class="logo">Mi Tienda</span>
+    <nav class="nav">
+      <a href="#">Inicio</a>
+      <a href="#">Productos</a>
+      <a href="#">Ofertas</a>   <!-- Este aparece primero por el order: -1 -->
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 style="margin-bottom: 1.5rem; font-size: 2rem;">Nuestros Productos</h1>
+
+    <div class="galeria">
+      <!-- Producto 1 (destacado) -->
+      <article class="producto destacado">
+        <div class="imagen"></div>
+        <h3>Producto Estrella</h3>
+        <span class="precio">$49.99</span>
+        <p class="descripcion">El más vendido, calidad premium.</p>
+        <button class="btn">Comprar</button>
+      </article>
+
+      <!-- Producto 2 -->
+      <article class="producto">
+        <div class="imagen"></div>
+        <h3>Producto 2</h3>
+        <span class="precio">$29.99</span>
+        <p class="descripcion">Descripción breve del producto 2.</p>
+        <button class="btn">Comprar</button>
+      </article>
+
+      <!-- Producto 3 -->
+      <article class="producto">
+        <div class="imagen"></div>
+        <h3>Producto 3</h3>
+        <span class="precio">$39.99</span>
+        <p class="descripcion">Descripción breve del producto 3.</p>
+        <button class="btn">Comprar</button>
+      </article>
+
+      <!-- Producto 4 -->
+      <article class="producto">
+        <div class="imagen"></div>
+        <h3>Producto 4</h3>
+        <span class="precio">$19.99</span>
+        <p class="descripcion">Descripción breve del producto 4.</p>
+        <button class="btn">Comprar</button>
+      </article>
+
+      <!-- Producto 5 -->
+      <article class="producto">
+        <div class="imagen"></div>
+        <h3>Producto 5</h3>
+        <span class="precio">$24.99</span>
+        <p class="descripcion">Descripción breve del producto 5.</p>
+        <button class="btn">Comprar</button>
+      </article>
+
+      <!-- Producto 6 -->
+      <article class="producto">
+        <div class="imagen"></div>
+        <h3>Producto 6</h3>
+        <span class="precio">$34.99</span>
+        <p class="descripcion">Descripción breve del producto 6.</p>
+        <button class="btn">Comprar</button>
+      </article>
+    </div>
+  </main>
+
+</body>
+</html>
