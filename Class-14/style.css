@@ -1,0 +1,138 @@
+/*RESET MINIMO*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #1e2a38;
+    background: #f4f6f8;
+    line-height: 1.5;
+}
+h1, h1{
+    font-weight: 700;
+}
+
+:root{
+    --overlay: rgba(0,0,0,0.55);
+    --radio: 8px;
+}
+
+.hero{
+    min-height: 60hv;
+    background: linear-gradient(var(--overlay), var(--overlay)), 
+    repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.06) 0px,
+    rgba(255,255,255,0.06) 10px,
+    transparent 10px,
+    transparent 20px    
+    ),
+    url("https://placehold.co/1600x900/1e3a5f/1e3a5f") center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    color: turquoise;
+    text-align: center;
+    padding: 20px;
+}
+
+.her0-content{
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    margin-bottom: 0.5rem;
+}
+
+.her0-content p{
+    opacity: 0.9;
+}
+
+.hero .iconos{
+    display: flex;
+    gap: 1.5rem;
+}
+
+/*CSS IMAGE SPRITE*/
+
+.icono{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-color: url("/Class-14/png-clipart-sprite-easy-open-can-illustration-sprite-fizzy-drinks-coca-cola-fanta-beverage-can-fanta-food-aluminum-can.png");
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.3));
+}
+
+.icono-home{
+    background-position: 0px 0;
+}
+
+.icono-user{
+    background-position: -32px 0;
+}
+
+.icono-buscar{
+    background-position: -64px 0;
+}
+
+main{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.bloque{
+    margin-bottom: 3rem;
+}
+
+.bloque h2{
+    margin-bottom: 1rem;
+    color: #1e3a5f;
+}
+
+.bloque code{
+    background: #e3e8ee;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.demo{
+    position: relative;
+    border-radius: var(--radio);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.demo-cover{
+    background: url("https://placehold.co/400x300/667eea/667eea") center / cover
+    no-repeat;
+}
+
+.demo-contain{
+    background: url("https://placehold.co/150x150/f5576c/f5576c") center / cover no-repeat;
+}
+
+/*2. gradientes*/
+
+.grad-linear-h{
+    background: linear-gradient(to right, #667eea, #764ba2);
+}
+
+.grad-linear-diag{
+    background: linear-gradient(135deg, #f093fb 0%,#f5576c 100%);
+}
+
+.grad-linear-hard{
+    background: linear-gradient(to right, #e96c4c 50%, #4c8ce9 50%);
+}
+
+.grad-radial{
+    background: radial-gradient(circle at center, #30cfd0 0%, #330867 100%git );
+}

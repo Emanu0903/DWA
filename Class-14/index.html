@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 14 — Fondos, Patrones y Sprites CSS</title>
+<link rel="stylesheet" href="/Class-14/style.css">
+</head>
+<body>
+
+  <!-- ===================================================== -->
+  <!-- HERO: overlay + patrón de rayas + imagen de fondo      -->
+  <!-- ===================================================== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Fondos, Patrones y Sprites CSS</h1>
+      <p>Diseño Web Adaptable — Clase 14</p>
+    </div>
+
+    <nav class="iconos">
+      <a href="#" class="icono icono-home" title="Inicio"></a>
+      <a href="#" class="icono icono-user" title="Usuario"></a>
+      <a href="#" class="icono icono-buscar" title="Buscar"></a>
+    </nav>
+  </section>
+
+  <main>
+
+    <!-- ============================================= -->
+    <!-- 1. background-size y background-position       -->
+    <!-- ============================================= -->
+    <section class="bloque">
+      <h2>1. <code>background-size</code> y <code>background-position</code></h2>
+      <div class="grid-2">
+        <div class="demo demo-cover">
+          <span class="etiqueta">cover</span>
+        </div>
+        <div class="demo demo-contain">
+          <span class="etiqueta">contain</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- 2. Gradientes lineales y radiales              -->
+    <!-- ============================================= -->
+    <section class="bloque">
+      <h2>2. Gradientes — <code>linear-gradient</code> y <code>radial-gradient</code></h2>
+      <div class="grid-4">
+        <div class="demo grad-linear-h"><span class="etiqueta">to right</span></div>
+        <div class="demo grad-linear-diag"><span class="etiqueta">135deg</span></div>
+        <div class="demo grad-linear-hard"><span class="etiqueta">borde duro 50%</span></div>
+        <div class="demo grad-radial"><span class="etiqueta">radial-gradient</span></div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- 3. Patrones con repeating-gradient             -->
+    <!-- ============================================= -->
+    <section class="bloque">
+      <h2>3. Patrones con <code>repeating-gradient</code></h2>
+      <div class="grid-3">
+        <div class="demo patron-rayas"><span class="etiqueta">rayas diagonales</span></div>
+        <div class="demo patron-puntos"><span class="etiqueta">puntos</span></div>
+        <div class="demo patron-cuadros"><span class="etiqueta">cuadros</span></div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- 4. Fondos múltiples / overlay                  -->
+    <!-- ============================================= -->
+    <section class="bloque">
+      <h2>4. Fondos múltiples — overlay sobre imagen</h2>
+      <div class="grid-2">
+        <div class="demo overlay-oscuro"><span class="etiqueta">overlay oscuro</span></div>
+        <div class="demo overlay-marca"><span class="etiqueta">overlay color de marca</span></div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- 5. CSS Image Sprites                           -->
+    <!-- ============================================= -->
+    <section class="bloque">
+      <h2>5. CSS Image Sprites</h2>
+      <p>Un solo archivo <code>sprite.png</code> con 3 íconos; cada clase desplaza <code>background-position</code>.</p>
+      <div class="sprite-demo">
+        <a href="#" class="icono icono-home" title="home"></a>
+        <a href="#" class="icono icono-user" title="user"></a>
+        <a href="#" class="icono icono-buscar" title="buscar"></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>www.univo.edu.sv — Clase 14 · Diseño Web Adaptable</p>
+  </footer>
+
+</body>
+</html>
