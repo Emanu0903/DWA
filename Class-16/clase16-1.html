@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/Class-16/style.css">
+<title>Compatibilidad CSS entre navegadores</title>
+
+<!-- Diseño base -->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --azul: #1e3a5f; --dorado: #c8a227; --gris: #f5f7fa; }
+
+  body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    line-height: 1.6; color: #1f2933;
+    background: var(--gris);
+  }
+
+  .encabezado {
+    background: linear-gradient(135deg, #0f2338, var(--azul));
+    color: #fff; padding: 3rem 1.5rem; text-align: center;
+    border-bottom: 4px solid var(--dorado);
+  }
+  .encabezado h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: .5rem; }
+  .subtitulo { color: #cfdcec; font-size: .95rem; }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  .seccion {
+    background: #fff; border-radius: 12px; padding: 1.75rem;
+    margin-bottom: 1.5rem; box-shadow: 0 4px 14px rgba(15,35,56,.08);
+  }
+  .seccion h2 {
+    color: var(--azul); font-size: 1.15rem;
+    padding-bottom: .6rem; margin-bottom: 1rem;
+    border-bottom: 2px solid #e3e8ef;
+  }
+  .seccion p { color: #4a5568; }
+  .nota { margin-bottom: 1rem; }
+
+  code {
+    background: #e6eef7; color: var(--azul);
+    padding: .1rem .35rem; border-radius: 4px; font-size: .88em;
+  }
+
+  .pie {
+    text-align: center; padding: 1.5rem;
+    color: #4a5568; font-size: .88rem;
+    border-top: 2px solid #e3e8ef;
+  }
+</style>
+
+</head>
+<body>
+
+<header class="encabezado">
+  <h1>Compatibilidad CSS entre navegadores</h1>
+  <p class="subtitulo">Prefijos, <code>@supports</code> y progressive enhancement.</p>
+</header>
+
+<main>
+
+  <section class="seccion">
+    <h2>1. Prefijos de proveedor</h2>
+    <div class="caja">
+      <p>Esta caja usa <code>border-radius</code> con prefijo <code>-webkit-</code> y luego la versión estándar.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>2. Recorte de texto (<code>-webkit-line-clamp</code>)</h2>
+    <h3 class="titulo">
+      Este título es deliberadamente largo para demostrar cómo el recorte multilínea corta el texto después de la segunda línea y añade puntos suspensivos automáticamente.
+    </h3>
+    <p>Propiedad que aún requiere prefijo <code>-webkit-</code> en la mayoría de motores.</p>
+  </section>
+
+  <section class="seccion">
+    <h2>3. <code>@supports</code> — base Flexbox, mejora con Grid</h2>
+    <div class="galeria">
+      <figure class="galeria__item"><img src="https://placehold.co/400x260/1e3a5f/c8a227?text=Item+1" alt="Elemento 1"><figcaption>Elemento 1</figcaption></figure>
+      <figure class="galeria__item"><img src="https://placehold.co/400x260/1e3a5f/c8a227?text=Item+2" alt="Elemento 2"><figcaption>Elemento 2</figcaption></figure>
+      <figure class="galeria__item"><img src="https://placehold.co/400x260/1e3a5f/c8a227?text=Item+3" alt="Elemento 3"><figcaption>Elemento 3</figcaption></figure>
+      <figure class="galeria__item"><img src="https://placehold.co/400x260/1e3a5f/c8a227?text=Item+4" alt="Elemento 4"><figcaption>Elemento 4</figcaption></figure>
+      <figure class="galeria__item"><img src="https://placehold.co/400x260/1e3a5f/c8a227?text=Item+5" alt="Elemento 5"><figcaption>Elemento 5</figcaption></figure>
+      <figure class="galeria__item"><img src="https://placehold.co/400x260/1e3a5f/c8a227?text=Item+6" alt="Elemento 6"><figcaption>Elemento 6</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>4. Plantilla de layout con fallback</h2>
+    <div class="cards">
+      <article class="card"><h3>Tarjeta A</h3><p>Base Flexbox; mejora a Grid si hay soporte.</p></article>
+      <article class="card"><h3>Tarjeta B</h3><p>Se aplica <code>flex: unset</code> dentro de <code>@supports</code>.</p></article>
+      <article class="card"><h3>Tarjeta C</h3><p>Verifica la distribución en columnas.</p></article>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>5. Scrollbar personalizado</h2>
+    <p class="nota">Desplace el panel para ver el scrollbar personalizado.</p>
+    <div class="panel-scroll">
+      <p>Línea 01 — contenido de demostración.</p>
+      <p>Línea 02 — contenido de demostración.</p>
+      <p>Línea 03 — contenido de demostración.</p>
+      <p>Línea 04 — contenido de demostración.</p>
+      <p>Línea 05 — contenido de demostración.</p>
+      <p>Línea 06 — contenido de demostración.</p>
+      <p>Línea 07 — contenido de demostración.</p>
+      <p>Línea 08 — contenido de demostración.</p>
+      <p>Línea 09 — contenido de demostración.</p>
+      <p>Línea 10 — contenido de demostración.</p>
+      <p>Línea 11 — contenido de demostración.</p>
+      <p>Línea 12 — contenido de demostración.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <p>Diseño Web Adaptable — Unidad 3</p>
+</footer>
+
+</body>
+</html>
