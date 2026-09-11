@@ -136,3 +136,33 @@ main{
 .grad-radial{
     background: radial-gradient(circle at center, #30cfd0 0%, #330867 100%git );
 }
+
+/*Plantilla: layout con fallback*/
+
+/*Base: Flexbox (todos los navegadores)*/
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card{ flex: 1 1 280px; }
+
+/*Mejora: Grid si hay soporte*/
+@supports (display: grid) {
+    .cards{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .card { /*reset flex  props */ flex: unset;}
+}
+
+/*Scrollbar personalizado*/
+::-webkit-scrollbar { width: 6px;}
+::-webkit-scrollbar-thumb {background: #c8a227;}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #c8a227 #1e3a5f;
+}
