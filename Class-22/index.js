@@ -76,6 +76,27 @@ agregarCarrito(3.0);
 console.log("Items: " + items + ", Total: " + total + " GRACIAS POR SU COMPRA");
 
 
+const totalPedido = 18;
+const esClienteFrecuente = true;
+
+// AND - => todas las condiciones deben cumplirse
+const aplicarDescuento = esClienteFrecuente && totalPedido > 15; // TRUE
+console.log("AND APLICA: " + aplicarDescuento); // TRUE
+
+// || -- Valor por defecto si algo falta
+const propina = 0;
+const propinaFinal = propina || 1.00; // 1.00
+console.log(propinaFinal);
+
+
+const sinStock = false;
+if (!sinStock) { console.log('Productos Disponible.')}
+
+// combinacion con Operadores aritmeticos ? Si: NO
+//SI APLICA DESCUENTO => EL TOTAL DE PEDIDO - 10% SINO 0 SIN DESCUENTO;
+const descuento = aplicarDescuento ? totalPedido * 0.10: 0;
+const totalFinal = totalPedido - descuento;
+console.log("Total de pedido: 18 - 2.8 => " + totalFinal);
 
 
 
