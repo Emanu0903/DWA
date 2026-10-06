@@ -102,4 +102,3 @@ console.log("Total de pedido: 18 - 2.8 => " + totalFinal);
 
 
 
-
