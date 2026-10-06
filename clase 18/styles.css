@@ -1,0 +1,459 @@
+/* ============================================================
+   1. VARIABLES Y RESET
+   ============================================================ */
+:root{
+  --azul:      #1e3a5f;
+  --azul-claro:#2c5282;
+  --oro:       #c8a227;
+  --oro-suave: #f5edd6;
+  --tinta:     #1f2933;
+  --gris:      #5a6672;
+  --linea:     #d7dee6;
+  --fondo:     #f4f6f9;
+  --blanco:    #ffffff;
+  --ok:        #1f7a4d;
+  --ok-bg:     #e6f5ee;
+  --no:        #b3261e;
+  --no-bg:     #fdeceb;
+  --aviso:     #8a6100;
+  --aviso-bg:  #fff6e0;
+  --mono:      "JetBrains Mono", "Fira Code", Consolas, "Courier New", monospace;
+  --radius:    14px;
+  --sombra:    0 4px 14px rgba(30,58,95,.08);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; scroll-padding-top:80px; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color:var(--tinta);
+  background:var(--fondo);
+  line-height:1.65;
+}
+
+/* ============================================================
+   2. PORTADA
+   ============================================================ */
+.hero{
+  background:
+    radial-gradient(circle at 85% 15%, rgba(200,162,39,.22), transparent 45%),
+    linear-gradient(150deg, #16304f 0%, #1e3a5f 55%, #2c5282 100%);
+  color:#fff;
+  padding:3.5rem 1.5rem 3rem;
+  text-align:center;
+}
+.hero .eyebrow{
+  display:inline-block;
+  font-size:.78rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--oro);
+  border:1px solid rgba(200,162,39,.5);
+  border-radius:999px;
+  padding:.3rem 1rem;
+  margin-bottom:1.2rem;
+}
+.hero h1{
+  margin:0 0 .6rem;
+  font-size:clamp(1.7rem, 4.5vw, 2.9rem);
+  line-height:1.2;
+  font-weight:800;
+}
+.hero h1 span{ color:var(--oro); }
+.hero p{
+  margin:0 auto;
+  max-width:640px;
+  color:#c9d6e4;
+  font-size:1.02rem;
+}
+.hero .meta{
+  margin-top:1.6rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  justify-content:center;
+}
+.hero .meta span{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+  padding:.35rem .9rem;
+  font-size:.82rem;
+  color:#e3ebf4;
+}
+
+/* ============================================================
+   3. NAVEGACIÓN
+   ============================================================ */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--linea);
+}
+.nav ul{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.25rem;
+  justify-content:center;
+  margin:0;
+  padding:.6rem 1rem;
+  list-style:none;
+}
+.nav a{
+  display:block;
+  padding:.35rem .75rem;
+  border-radius:999px;
+  font-size:.83rem;
+  font-weight:600;
+  color:var(--gris);
+  text-decoration:none;
+  transition:.18s;
+}
+.nav a:hover{ background:var(--oro-suave); color:var(--azul); }
+
+/* ============================================================
+   4. LAYOUT DE SECCIONES
+   ============================================================ */
+main{
+  max-width:1080px;
+  margin:0 auto;
+  padding:2.5rem 1.25rem 4rem;
+}
+section{
+  margin-bottom:3.5rem;
+  scroll-margin-top:80px;
+}
+section > h2{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  margin:0 0 .4rem;
+  font-size:clamp(1.25rem, 2.6vw, 1.7rem);
+  color:var(--azul);
+}
+.num{
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  width:2.1rem;
+  height:2.1rem;
+  border-radius:10px;
+  background:var(--azul);
+  color:var(--oro);
+  font-size:.95rem;
+  font-weight:800;
+}
+.lead{
+  margin:.2rem 0 1.5rem;
+  color:var(--gris);
+  font-size:1rem;
+  border-left:3px solid var(--oro);
+  padding-left:.9rem;
+}
+
+/* ============================================================
+   5. TARJETAS
+   ============================================================ */
+.grid{
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+}
+.card{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:var(--radius);
+  padding:1.25rem 1.3rem;
+  box-shadow:var(--sombra);
+}
+.card h3{
+  margin:0 0 .5rem;
+  font-size:1.02rem;
+  color:var(--azul);
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+.card p{ margin:0 0 .6rem; font-size:.92rem; color:var(--gris); }
+.card ul{ margin:.5rem 0 0; padding-left:1.1rem; font-size:.9rem; color:var(--gris); }
+.card ul li{ margin-bottom:.25rem; }
+
+.icono{
+  display:grid;
+  place-items:center;
+  width:1.7rem;
+  height:1.7rem;
+  border-radius:8px;
+  background:var(--oro-suave);
+  color:var(--aviso);
+  font-size:.85rem;
+  font-weight:800;
+  flex:0 0 auto;
+}
+
+/* ============================================================
+   6. BLOQUES DE CÓDIGO
+   ============================================================ */
+pre.code{
+  margin:.9rem 0;
+  background:#12233a;
+  color:#e8eef6;
+  border-radius:12px;
+  padding:1rem 1.1rem;
+  overflow-x:auto;
+  font-family:var(--mono);
+  font-size:.83rem;
+  line-height:1.6;
+  border-left:4px solid var(--oro);
+  tab-size:2;
+}
+pre.code code{ font-family:inherit; }
+.cm{ color:#7d97b3; font-style:italic; }   /* comentario */
+.tag{ color:#ff9d8a; }                     /* etiqueta HTML */
+.atr{ color:#ffd479; }                     /* atributo */
+.str{ color:#9ae6b4; }                     /* string */
+.kw{ color:#8ab4f8; }                      /* keyword */
+.fn{ color:#e6c07b; }                      /* función */
+
+/* Código en línea */
+code.inline{
+  background:#eef2f7;
+  border:1px solid var(--linea);
+  border-radius:5px;
+  padding:.1rem .38rem;
+  font-family:var(--mono);
+  font-size:.85em;
+  color:var(--azul);
+}
+
+/* ============================================================
+   7. TABLAS
+   ============================================================ */
+.tabla-wrap{ overflow-x:auto; margin:1rem 0; }
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--blanco);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:var(--sombra);
+  font-size:.88rem;
+  min-width:520px;
+}
+caption{
+  caption-side:top;
+  text-align:left;
+  font-size:.82rem;
+  color:var(--gris);
+  padding-bottom:.5rem;
+}
+th, td{
+  padding:.65rem .85rem;
+  text-align:left;
+  border-bottom:1px solid var(--linea);
+}
+thead th{
+  background:var(--azul);
+  color:#fff;
+  font-size:.8rem;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+tbody tr:last-child td{ border-bottom:none; }
+tbody tr:nth-child(even){ background:#fafbfd; }
+td.si{ color:var(--ok); font-weight:700; }
+td.no{ color:var(--no); font-weight:700; }
+
+/* ============================================================
+   8. AVISOS
+   ============================================================ */
+.aviso{
+  border-radius:12px;
+  padding:.9rem 1.1rem;
+  margin:1rem 0;
+  font-size:.92rem;
+  border-left:5px solid;
+}
+.aviso strong{ display:block; margin-bottom:.15rem; }
+.aviso.ok   { background:var(--ok-bg);    border-color:var(--ok);    color:#14512f; }
+.aviso.mal  { background:var(--no-bg);    border-color:var(--no);    color:#7d1a15; }
+.aviso.warn { background:var(--aviso-bg); border-color:var(--oro);   color:#6b4c00; }
+.aviso.info { background:#eaf2fb;         border-color:var(--azul-claro); color:#1b3c5e; }
+
+/* ============================================================
+   9. ÁRBOL DEL DOM
+   ============================================================ */
+.arbol{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:var(--radius);
+  padding:1.4rem 1.6rem;
+  box-shadow:var(--sombra);
+  overflow-x:auto;
+}
+.tree, .tree ul{ list-style:none; margin:0; padding:0; }
+.tree ul{
+  margin-left:1.15rem;
+  padding-left:1.35rem;
+  border-left:2px solid #c7d3e0;
+}
+.tree li{ position:relative; padding:.28rem 0; }
+.tree ul > li::before{
+  content:"";
+  position:absolute;
+  left:-1.35rem;
+  top:1.15rem;
+  width:1.35rem;
+  height:2px;
+  background:#c7d3e0;
+}
+.nodo{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:.85rem;
+  padding:.22rem .7rem;
+  border-radius:8px;
+  border:1.5px solid var(--azul);
+  background:#eef4fb;
+  color:var(--azul);
+}
+.nodo.raiz{
+  background:var(--azul);
+  color:#fff;
+  border-color:var(--azul);
+}
+.nodo.oro{
+  background:var(--oro-suave);
+  border-color:var(--oro);
+  color:#7a5a00;
+}
+.nota-arbol{
+  margin-top:1rem;
+  font-size:.85rem;
+  color:var(--gris);
+  text-align:center;
+}
+
+/* ============================================================
+   10. EJERCICIO: TARJETA DEMO
+   ============================================================ */
+.demo{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:var(--radius);
+  padding:1.5rem;
+  box-shadow:var(--sombra);
+  display:flex;
+  justify-content:center;
+}
+.tarjeta{
+  border:1px solid #ccc;
+  border-radius:12px;
+  padding:1.2rem;
+  max-width:320px;
+  width:100%;
+  background:#fff;
+}
+.tarjeta h3{ margin:0 0 .3rem; color:var(--azul); font-size:1.05rem; }
+.tarjeta .precio{ margin:0 0 .9rem; font-size:1.15rem; color:var(--tinta); }
+.btn-detalle{
+  background:var(--azul);
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  padding:.55rem 1.1rem;
+  font-size:.88rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:.18s;
+  font-family:inherit;
+}
+.btn-detalle:hover{ background:var(--azul-claro); }
+.btn-detalle:focus-visible{ outline:3px solid var(--oro); outline-offset:2px; }
+.detalle{
+  margin-top:1rem;
+  padding-top:.9rem;
+  border-top:1px dashed var(--linea);
+  font-size:.88rem;
+  color:var(--gris);
+}
+.detalle p{ margin:.2rem 0; }
+.oculto{ display:none; }
+
+/* ============================================================
+   11. PASOS NUMERADOS
+   ============================================================ */
+.pasos{ counter-reset:paso; list-style:none; margin:1rem 0 0; padding:0; }
+.pasos li{
+  counter-increment:paso;
+  position:relative;
+  padding:.55rem 0 .55rem 2.6rem;
+  font-size:.92rem;
+  border-bottom:1px dashed var(--linea);
+}
+.pasos li:last-child{ border-bottom:none; }
+.pasos li::before{
+  content:counter(paso);
+  position:absolute;
+  left:0; top:.5rem;
+  width:1.75rem; height:1.75rem;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:var(--oro);
+  color:#3d2c00;
+  font-weight:800;
+  font-size:.8rem;
+}
+
+/* ============================================================
+   12. PREGUNTAS DESPLEGABLES
+   ============================================================ */
+details{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:12px;
+  padding:.85rem 1.1rem;
+  margin-bottom:.7rem;
+  box-shadow:var(--sombra);
+}
+details[open]{ border-left:4px solid var(--oro); }
+summary{
+  cursor:pointer;
+  font-weight:700;
+  color:var(--azul);
+  font-size:.95rem;
+  list-style:none;
+}
+summary::-webkit-details-marker{ display:none; }
+summary::before{ content:"▸ "; color:var(--oro); font-weight:900; }
+details[open] summary::before{ content:"▾ "; }
+details p{ margin:.7rem 0 0; font-size:.92rem; color:var(--gris); }
+
+/* ============================================================
+   13. PIE
+   ============================================================ */
+footer{
+  background:var(--azul);
+  color:#b9c9db;
+  text-align:center;
+  padding:2rem 1.25rem;
+  font-size:.85rem;
+}
+footer strong{ color:var(--oro); }
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media (max-width:600px){
+  .hero{ padding:2.5rem 1rem 2rem; }
+  main{ padding:1.75rem .9rem 3rem; }
+  pre.code{ font-size:.76rem; padding:.85rem; }
+  .nav ul{ justify-content:flex-start; flex-wrap:nowrap; overflow-x:auto; }
+  .nav a{ white-space:nowrap; }
+}

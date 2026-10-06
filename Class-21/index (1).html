@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clase 21 · Escrituras en el DOM</title>
+  <link rel="stylesheet" href="./styles (1).css">
+  <link rel="stylesheet" href="./script.js">
+</head>
+<body>
+
+  <!-- ================= ENCABEZADO ================= -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__fila">
+      <h1 class="logo">
+        🍽️ Sabor Cuscatleco
+        <span class="badge">3</span>
+      </h1>
+
+      <nav id="menu-principal" class="menu-principal">
+        <a href="#seccion-menu">Menú</a>
+        <a href="#seccion-comentarios">Comentarios</a>
+        <a href="#seccion-reservar">Reservar</a>
+        <a href="#seccion-contacto">Contacto</a>
+
+        <!-- Dropdown de ejemplo -->
+        <div class="dropdown">
+          <button class="btn-dropdown" type="button">Opciones</button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#">Configuración</a></li>
+            <li><a href="#">Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <button id="btn-modo-oscuro" class="btn-modo-oscuro" type="button">
+        Modo oscuro
+      </button>
+    </div>
+  </header>
+
+  <main class="contenedor">
+
+    <!-- ================= SECCIÓN MENÚ ================= -->
+    <section id="seccion-menu" class="menu">
+      <h2 class="titulo-seccion">Menú</h2>
+      <p id="contador" class="contador"></p>
+
+      <!-- Se llena desde JS con: lista.innerHTML = platillos.map(...).join('') -->
+      <ul class="lista-platillos"></ul>
+
+      <!-- Tarjetas de ejemplo para el ejercicio de favoritos -->
+      <div class="tarjeta-platillo">
+        <p class="nombre">Pupusas revueltas</p>
+        <button class="btn-favorito" type="button" aria-label="Marcar como favorito">&#9825;</button>
+      </div>
+
+      <div class="tarjeta-platillo">
+        <p class="nombre">Yuca frita</p>
+        <button class="btn-favorito" type="button" aria-label="Marcar como favorito">&#9825;</button>
+      </div>
+
+      <div class="tarjeta-platillo">
+        <p class="nombre">Atol de elote</p>
+        <button class="btn-favorito" type="button" aria-label="Marcar como favorito">&#9825;</button>
+      </div>
+
+      <!-- Ejemplo de classList.toggle('destacado') -->
+      <div class="tarjeta-platillo">
+        <p class="nombre">Platillo del día</p>
+        <button id="btn-destacar" class="btn-secundario" type="button">
+          Destacar
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN EVENTOS ================= -->
+    <section id="seccion-eventos" class="panel">
+      <h2 class="titulo-seccion">Eventos del usuario</h2>
+
+      <div class="fila">
+        <button id="smi-boton" class="boton-reservar" type="button">
+          Haz clic aquí
+        </button>
+
+        <label class="campo">
+          <span>Escribe tu nombre</span>
+          <input id="nombre" type="text" placeholder="Tu nombre...">
+        </label>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN COMENTARIOS ================= -->
+    <section id="seccion-comentarios" class="panel">
+      <h2 class="titulo-seccion">Comentarios</h2>
+      <p class="nota">
+        El tercer comentario es un dato NO confiable: se muestra como texto
+        plano gracias a <code>textContent</code>.
+      </p>
+
+      <ul class="lista-comentarios"></ul>
+    </section>
+
+    <!-- ================= SECCIÓN RESERVAR ================= -->
+    <section id="seccion-reservar" class="panel">
+      <h2 class="titulo-seccion">Reservar mesa</h2>
+
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Mesa para 2</h3>
+          <p class="precio">$12.00</p>
+          <button class="boton-reservar" type="button">Reservar</button>
+        </article>
+
+        <article class="tarjeta">
+          <h3>Mesa para 4</h3>
+          <p class="precio">$22.00</p>
+          <button class="boton-reservar" type="button">Reservar</button>
+        </article>
+
+        <article class="tarjeta">
+          <h3>Mesa familiar</h3>
+          <p class="precio">$35.00</p>
+          <button class="boton-reservar" type="button">Reservar</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN CONTACTO ================= -->
+    <section id="seccion-contacto" class="panel">
+      <h2 class="titulo-seccion">Contacto</h2>
+
+      <form id="form-contacto" class="formulario" novalidate>
+        <label class="campo">
+          <span>Nombre</span>
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
+        </label>
+
+        <label class="campo">
+          <span>Correo electrónico</span>
+          <input type="email" name="email" placeholder="correo@ejemplo.com" required>
+        </label>
+
+        <label class="campo">
+          <span>Mensaje</span>
+          <textarea name="mensaje" rows="4" placeholder="Escribe tu mensaje..."></textarea>
+        </label>
+
+        <button class="boton-reservar" type="submit">Enviar mensaje</button>
+        <p id="aviso-formulario" class="aviso"></p>
+      </form>
+    </section>
+
+    <!-- ================= SECCIÓN DEPURACIÓN ================= -->
+    <section class="panel">
+      <h2 class="titulo-seccion">Consola</h2>
+      <p class="nota">
+        Abre las herramientas de desarrollo (F12) para ver la salida de
+        <code>console.log</code>. Recuerda: el usuario final nunca lo ve.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ================= PIE ================= -->
+  <footer class="pie">
+    <div class="contenedor">
+      <p>Clase 21 · Interacciones con HTML/CSS y escrituras en el DOM</p>
+      <p class="pie__frase">
+        textContent seguro · innerHTML con cuidado · write jamás
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

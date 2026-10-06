@@ -1,0 +1,402 @@
+    /* ================= VARIABLES Y RESET ================= */
+    :root {
+      --bg: #f9fafb;
+      --texto: #1f2937;
+      --primario: #e53e3e;
+      --primario-hover: #c53030;
+      --tarjeta: #ffffff;
+      --borde: #e2e8f0;
+      --sombra: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --radio: 0.75rem;
+    }
+
+    body.oscuro {
+      --bg: #1a202c;
+      --texto: #f7fafc;
+      --primario: #f56565;
+      --primario-hover: #fc8181;
+      --tarjeta: #2d3748;
+      --borde: #4a5568;
+      --sombra: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--texto);
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+
+    .contenedor {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    /* ================= ENCABEZADO ================= */
+    .encabezado {
+      background: var(--tarjeta);
+      border-bottom: 1px solid var(--borde);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .encabezado__fila {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      background: var(--primario);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .menu-principal {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .menu-principal a {
+      color: var(--texto);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .menu-principal a:hover {
+      color: var(--primario);
+    }
+
+    .btn-modo-oscuro {
+      background: var(--primario);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radio);
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .btn-modo-oscuro:hover {
+      background: var(--primario-hover);
+    }
+
+    /* ================= DROPDOWN ================= */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .btn-dropdown {
+      background: transparent;
+      border: 1px solid var(--borde);
+      color: var(--texto);
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radio);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 110%;
+      background: var(--tarjeta);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      list-style: none;
+      min-width: 160px;
+      padding: 0.5rem 0;
+      z-index: 20;
+    }
+
+    .dropdown.abierto .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: 0.4rem 1rem;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .dropdown-menu li a:hover {
+      background: var(--bg);
+    }
+
+    /* ================= SECCIONES ================= */
+    .panel,
+    .menu {
+      background: var(--tarjeta);
+      border-radius: var(--radio);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      box-shadow: var(--sombra);
+      border: 1px solid var(--borde);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .titulo-seccion {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primario);
+      border-bottom: 2px solid var(--borde);
+      padding-bottom: 0.5rem;
+    }
+
+    .contador {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .nota {
+      font-size: 0.9rem;
+      color: #718096;
+      margin-bottom: 1rem;
+    }
+
+    body.oscuro .nota {
+      color: #a0aec0;
+    }
+
+    /* ================= LISTA DE PLATILLOS ================= */
+    .lista-platillos {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .lista-platillos li {
+      background: var(--bg);
+      padding: 0.75rem;
+      border-radius: var(--radio);
+      border: 1px solid var(--borde);
+    }
+
+    /* ================= TARJETAS ================= */
+    .tarjeta-platillo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radio);
+      border: 1px solid var(--borde);
+      margin-bottom: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .tarjeta-platillo.destacado {
+      border-color: var(--primario);
+      box-shadow: 0 0 0 2px var(--primario);
+    }
+
+    .tarjeta-platillo .nombre {
+      font-weight: 500;
+    }
+
+    .btn-favorito {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--texto);
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .btn-favorito:hover {
+      transform: scale(1.2);
+    }
+
+    .btn-favorito.favorito {
+      color: var(--primario);
+    }
+
+    .btn-secundario {
+      background: var(--borde);
+      color: var(--texto);
+      border: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radio);
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    /* ================= FILA Y CAMPOS ================= */
+    .fila {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .campo span {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    input,
+    textarea {
+      padding: 0.6rem;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      background: var(--bg);
+      color: var(--texto);
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primario);
+    }
+
+    /* ================= BOTÓN RESERVAR ================= */
+    .boton-reservar {
+      background: var(--primario);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radio);
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .boton-reservar:hover {
+      background: var(--primario-hover);
+    }
+
+    /* ================= TARJETAS DE RESERVA ================= */
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .tarjeta {
+      background: var(--bg);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .tarjeta:first-child {
+      border-color: var(--primario);
+    }
+
+    .tarjeta h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tarjeta p.precio {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primario);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ================= COMENTARIOS ================= */
+    .lista-comentarios {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .lista-comentarios li {
+      background: var(--bg);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radio);
+      border-left: 4px solid var(--primario);
+    }
+
+    /* ================= FORMULARIO ================= */
+    .formulario {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .aviso {
+      font-weight: 600;
+      color: var(--primario);
+    }
+
+    /* ================= PIE ================= */
+    .pie {
+      margin-top: 2rem;
+      padding: 1.5rem 0;
+      background: var(--tarjeta);
+      border-top: 1px solid var(--borde);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .pie__frase {
+      font-style: italic;
+      color: #718096;
+      margin-top: 0.25rem;
+    }
+
+    body.oscuro .pie__frase {
+      color: #a0aec0;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 640px) {
+      .encabezado__fila {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .menu-principal {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .fila {
+        flex-direction: column;
+      }
+    }

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 18 — Declaración de scripts JavaScript | UNIVO</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+     PORTADA
+     ============================================================ -->
+    <header class="hero">
+        <span class="eyebrow">Unidad 4 · JavaScript en el navegador</span>
+        <h1>Declaración de <span>scripts JavaScript</span></h1>
+        <p>
+            Cómo incluir scripts en una página web, qué es el DOM,
+            cómo modificarlo desde el navegador y cómo escuchar eventos.
+        </p>
+        <div class="meta">
+            <span>Ing. Alberto Manases Turcios Ortez</span>
+            <span>Diseño Web Adaptable — Sección A</span>
+            <span>Martes 22 de septiembre de 2026</span>
+            <span>10:40 am – 12:20 pm</span>
+        </div>
+    </header>
+
+    <!-- ============================================================
+     NAVEGACIÓN
+     ============================================================ -->
+    <nav class="nav">
+        <ul>
+            <li><a href="#triada">Tríada</a></li>
+            <li><a href="#formas">3 formas</a></li>
+            <li><a href="#defer">defer / async</a></li>
+            <li><a href="#consola">Consola</a></li>
+            <li><a href="#dom">DOM</a></li>
+            <li><a href="#selectores">Selectores</a></li>
+            <li><a href="#modificar">Modificar DOM</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#ejercicio">Ejercicio</a></li>
+            <li><a href="#repaso">Repaso</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- ============================================================
+     1. TRÍADA
+     ============================================================ -->
+        <section id="triada">
+            <h2><span class="num">1</span> La tríada HTML / CSS / JS</h2>
+            <p class="lead">
+                JavaScript es el único lenguaje que los navegadores ejecutan nativamente.
+                Convierte páginas estáticas en aplicaciones web interactivas.
+            </p>
+
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="icono">H</span> HTML — Estructura</h3>
+                    <p>Define <strong>qué elementos existen</strong> en la página.</p>
+                    <ul>
+                        <li>Títulos, párrafos, botones</li>
+                        <li>Formularios, listas, imágenes</li>
+                        <li>Semántica y accesibilidad</li>
+                    </ul>
+                    <p style="margin-top:.6rem"><em>El esqueleto del contenido.</em></p>
+                </article>
+
+                <article class="card">
+                    <h3><span class="icono">C</span> CSS — Presentación</h3>
+                    <p>Define <strong>cómo se ve</strong> cada elemento.</p>
+                    <ul>
+                        <li>Colores, fuentes, márgenes</li>
+                        <li>Layout (Flexbox, Grid)</li>
+                        <li>Animaciones y transiciones</li>
+                    </ul>
+                    <p style="margin-top:.6rem"><em>La apariencia visual.</em></p>
+                </article>
+
+                <article class="card">
+                    <h3><span class="icono">JS</span> JS — Comportamiento</h3>
+                    <p>Define <strong>qué hace</strong> la página ante una acción del usuario.</p>
+                    <ul>
+                        <li>Menús desplegables</li>
+                        <li>Validación de formularios</li>
+                        <li>Cambios dinámicos sin recargar</li>
+                        <li>Peticiones al servidor (fetch)</li>
+                    </ul>
+                    <p style="margin-top:.6rem"><em>La interactividad.</em></p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============================================================
+     2. TRES FORMAS DE DECLARAR JS
+     ============================================================ -->
+        <section id="formas">
+            <h2><span class="num">2</span> Las tres formas de declarar JavaScript</h2>
+            <p class="lead">Inline, internal y external. Solo una es la recomendada.</p>
+
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="icono">1</span> Inline</h3>
+                    <p>Código dentro de un atributo HTML.</p>
+                    <p><strong style="color:var(--no)">No recomendado:</strong> mezcla estructura
+                        con lógica, difícil de mantener y de depurar.</p>
+                </article>
+
+                <article class="card">
+                    <h3><span class="icono">2</span> Internal</h3>
+                    <p>Bloque <code class="inline">&lt;script&gt;</code> dentro del HTML.</p>
+                    <p>Mejor que inline, pero el código sigue mezclado con el HTML.</p>
+                </article>
+
+                <article class="card" style="border-color:var(--ok); border-width:2px">
+                    <h3><span class="icono" style="background:var(--ok-bg); color:var(--ok)">3</span> External ✔</h3>
+                    <p>Archivo <code class="inline">.js</code> separado, enlazado con
+                        <code class="inline">&lt;script src="..."&gt;</code>.
+                    </p>
+                    <p><strong style="color:var(--ok)">Recomendado:</strong> separación clara de
+                        responsabilidades, reutilizable y mantenible.</p>
+                </article>
+            </div>
+
+            <pre class="code"><code><span class="cm">&lt;!-- Forma 1: Inline — NO recomendado --&gt;</span>
+<span class="tag">&lt;button</span> <span class="atr">onclick</span>=<span class="str">"alert('Hola!')"</span><span class="tag">&gt;</span>Botón<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;a</span> <span class="atr">href</span>=<span class="str">"#"</span> <span class="atr">onmouseover</span>=<span class="str">"this.style.color='red'"</span><span class="tag">&gt;</span>Link<span class="tag">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- Forma 2: Internal — dentro del HTML --&gt;</span>
+<span class="tag">&lt;script&gt;</span>
+  document.querySelector(<span class="str">'h1'</span>).textContent = <span class="str">'Inicio'</span>;
+  console.log(<span class="str">'Script interno ejecutado'</span>);
+<span class="tag">&lt;/script&gt;</span>
+
+<span class="cm">&lt;!-- Forma 3: External — archivo separado (recomendado) --&gt;</span>
+<span class="cm">&lt;!-- va en &lt;head&gt; con defer, o al final de &lt;body&gt; --&gt;</span>
+<span class="tag">&lt;script</span> <span class="atr">src</span>=<span class="str">"js/app.js"</span> <span class="atr">defer</span><span class="tag">&gt;&lt;/script&gt;</span>
+
+<span class="cm">&lt;!-- Estructura de archivos con external: --&gt;</span>
+<span class="cm">&lt;!--   index.html                  --&gt;</span>
+<span class="cm">&lt;!--   css/styles.css              --&gt;</span>
+<span class="cm">&lt;!--   js/app.js   ← aquí va todo el JavaScript --&gt;</span></code></pre>
+
+            <div class="aviso ok">
+                <strong>Regla práctica</strong>
+                Todo el JavaScript de un proyecto real vive en archivos <code class="inline">.js</code>
+                externos. Inline solo para pruebas rápidas de una línea.
+            </div>
+        </section>
+
+        <!-- ============================================================
+     3. DEFER / ASYNC
+     ============================================================ -->
+        <section id="defer">
+            <h2><span class="num">3</span> Posición del <code class="inline">&lt;script&gt;</code>, defer y async</h2>
+            <p class="lead">Dónde y cómo cargas el script cambia el rendimiento de la página.</p>
+
+            <div class="grid">
+                <article class="card" style="border-left:4px solid var(--no)">
+                    <h3>Sin atributo en &lt;head&gt;</h3>
+                    <p><strong style="color:var(--no)">Bloquea el HTML.</strong> El navegador para de
+                        leer el HTML, descarga y ejecuta el script primero.</p>
+                </article>
+
+                <article class="card" style="border-left:4px solid var(--ok)">
+                    <h3>Con <code class="inline">defer</code></h3>
+                    <p>Descarga en paralelo mientras lee el HTML y ejecuta
+                        <strong>después de que el DOM esté listo</strong>. Recomendado.
+                    </p>
+                </article>
+
+                <article class="card" style="border-left:4px solid var(--oro)">
+                    <h3>Con <code class="inline">async</code></h3>
+                    <p>Solo para scripts que <strong>no dependen del DOM</strong>
+                        ni de otros scripts (analíticas, publicidad).</p>
+                </article>
+            </div>
+
+            <pre class="code"><code><span class="cm">&lt;!-- SIN atributo en &lt;head&gt;: BLOQUEA el HTML --&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;script</span> <span class="atr">src</span>=<span class="str">"app.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+
+<span class="cm">&lt;!-- Con DEFER en &lt;head&gt;: recomendado --&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;script</span> <span class="atr">src</span>=<span class="str">"app.js"</span> <span class="atr">defer</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+
+<span class="cm">&lt;!-- Con ASYNC en &lt;head&gt;: solo para scripts independientes --&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;script</span> <span class="atr">src</span>=<span class="str">"analytics.js"</span> <span class="atr">async</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+
+            <div class="tabla-wrap">
+                <table>
+                    <caption>Comparación de atributos de carga</caption>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>defer</th>
+                            <th>async</th>
+                            <th>sin atributo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bloquea el HTML</td>
+                            <td class="no">No</td>
+                            <td class="no">No</td>
+                            <td class="si">Sí</td>
+                        </tr>
+                        <tr>
+                            <td>Descarga</td>
+                            <td>Paralela</td>
+                            <td>Paralela</td>
+                            <td>Al leer la etiqueta</td>
+                        </tr>
+                        <tr>
+                            <td>Ejecuta</td>
+                            <td>Fin del DOM</td>
+                            <td>Al cargar</td>
+                            <td>Inmediato</td>
+                        </tr>
+                        <tr>
+                            <td>Orden garantizado</td>
+                            <td class="si">Sí</td>
+                            <td class="no">No</td>
+                            <td class="si">Sí</td>
+                        </tr>
+                        <tr>
+                            <td>Accede al DOM con seguridad</td>
+                            <td class="si">Sí</td>
+                            <td class="no">No</td>
+                            <td>Depende</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="aviso ok">
+                <strong>Regla de oro</strong>
+                Siempre usar <code class="inline">defer</code> para scripts que manipulan el DOM.
+                Reservar <code class="inline">async</code> para scripts totalmente independientes
+                (analíticas, publicidad).
+            </div>
+        </section>
+
+        <!-- ============================================================
+     4. CONSOLA
+     ============================================================ -->
+        <section id="consola">
+            <h2><span class="num">4</span> La consola del navegador</h2>
+            <p class="lead">Tu mejor herramienta de depuración. Ábrela siempre antes de programar.</p>
+
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="icono">⌨</span> Cómo abrirla</h3>
+                    <ul>
+                        <li><strong>Windows / Linux:</strong> F12 o Ctrl + Shift + J</li>
+                        <li><strong>macOS:</strong> Cmd + Option + J</li>
+                        <li>Clic derecho → Inspeccionar → pestaña <em>Console</em></li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3><span class="icono">🔍</span> ¿Para qué sirve?</h3>
+                    <ul>
+                        <li>Ver mensajes del script con <code class="inline">console.log</code></li>
+                        <li>Detectar errores de JavaScript (en rojo)</li>
+                        <li>Ejecutar código interactivo</li>
+                        <li>Ver el valor de variables</li>
+                        <li>Probar expresiones rápidas</li>
+                    </ul>
+                </article>
+            </div>
+
+            <pre class="code"><code><span class="cm">// Mensaje informativo</span>
+console.<span class="fn">log</span>(<span class="str">'Script cargado correctamente'</span>);
+
+<span class="cm">// Advertencia (fondo amarillo en la consola)</span>
+console.<span class="fn">warn</span>(<span class="str">'Esta función está deprecada'</span>);
+
+<span class="cm">// Error (fondo rojo en la consola)</span>
+console.<span class="fn">error</span>(<span class="str">'No se encontró el elemento'</span>);
+
+<span class="cm">// Mostrar el tipo de un valor (typeof)</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> 42);          <span class="cm">// "number"</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> <span class="str">'hola'</span>);      <span class="cm">// "string"</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> <span class="kw">true</span>);        <span class="cm">// "boolean"</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> <span class="kw">undefined</span>);   <span class="cm">// "undefined"</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> <span class="kw">null</span>);        <span class="cm">// "object"  ← bug histórico de JS</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> {});          <span class="cm">// "object"</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> []);          <span class="cm">// "object"</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> <span class="kw">function</span>(){});  <span class="cm">// "function"</span>
+
+<span class="cm">// Ver el valor de una variable en cualquier punto</span>
+<span class="kw">const</span> nombre = <span class="str">'Ana'</span>;
+console.<span class="fn">log</span>(<span class="str">'Nombre actual:'</span>, nombre);</code></pre>
+
+            <div class="aviso warn">
+                <strong>Truco de clase</strong>
+                Si algo “no funciona”, lo primero es abrir la consola. El 90 % de los errores
+                de un principiante aparecen ahí en rojo: <em>null is not an object</em>,
+                <em>Cannot read properties of null</em>, etc.
+            </div>
+        </section>
+
+        <!-- ============================================================
+     5. EL DOM
+     ============================================================ -->
+        <section id="dom">
+            <h2><span class="num">5</span> El DOM — árbol del documento</h2>
+            <p class="lead">
+                <strong>Document Object Model:</strong> representación en memoria que el navegador
+                construye a partir del HTML. Cada etiqueta se convierte en un nodo del árbol.
+            </p>
+
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="icono">✎</span> JavaScript puede…</h3>
+                    <ul>
+                        <li>Leer cualquier elemento y sus propiedades</li>
+                        <li>Modificar texto, estilos y atributos</li>
+                        <li>Agregar o eliminar elementos</li>
+                        <li>Escuchar eventos del usuario</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3><span class="icono">→</span> Punto de entrada</h3>
+                    <p><code class="inline">document</code> — desde él se accede a cualquier elemento
+                        de la página.</p>
+                    <pre class="code"
+                        style="margin-top:.6rem"><code>document.<span class="fn">querySelector</span>(<span class="str">'h1'</span>);</code></pre>
+                </article>
+            </div>
+
+            <div class="arbol">
+                <ul class="tree">
+                    <li>
+                        <span class="nodo raiz">document</span>
+                        <ul>
+                            <li>
+                                <span class="nodo">&lt;html&gt;</span>
+                                <ul>
+                                    <li>
+                                        <span class="nodo">&lt;head&gt;</span>
+                                        <ul>
+                                            <li><span class="nodo">&lt;title&gt;</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="nodo">&lt;body&gt;</span>
+                                        <ul>
+                                            <li>
+                                                <span class="nodo">&lt;header&gt;</span>
+                                                <ul>
+                                                    <li><span class="nodo">&lt;h1&gt;</span></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="nodo">&lt;main&gt;</span>
+                                                <ul>
+                                                    <li><span class="nodo oro">&lt;section&gt;</span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="nota-arbol">
+                    Cada caja es un <strong>nodo</strong>. JavaScript puede leerlo, modificarlo,
+                    crear nuevos nodos o eliminarlos.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================
+     6. SELECTORES
+     ============================================================ -->
+        <section id="selectores">
+            <h2><span class="num">6</span> Seleccionar elementos: tres métodos principales</h2>
+            <p class="lead">Antes de modificar algo, hay que encontrarlo.</p>
+
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="icono">1</span> getElementById</h3>
+                    <p>Busca por <code class="inline">id</code> (único). Devuelve el elemento
+                        o <code class="inline">null</code>.</p>
+                </article>
+                <article class="card">
+                    <h3><span class="icono">2</span> querySelector</h3>
+                    <p>Busca con un selector CSS. Devuelve <strong>el primero</strong> que coincida
+                        o <code class="inline">null</code>.</p>
+                </article>
+                <article class="card">
+                    <h3><span class="icono">3</span> querySelectorAll</h3>
+                    <p>Busca con selector CSS. Devuelve una <strong>NodeList</strong> con todos
+                        los que coincidan (puede estar vacía).</p>
+                </article>
+            </div>
+
+            <pre class="code"><code><span class="cm">// 1. getElementById — busca por el atributo id</span>
+<span class="kw">const</span> titulo = document.<span class="fn">getElementById</span>(<span class="str">'titulo-principal'</span>);
+<span class="kw">const</span> form   = document.<span class="fn">getElementById</span>(<span class="str">'form-contacto'</span>);
+
+<span class="cm">// 2. querySelector — cualquier selector CSS válido</span>
+<span class="kw">const</span> boton      = document.<span class="fn">querySelector</span>(<span class="str">'.btn-primario'</span>);
+<span class="kw">const</span> nav        = document.<span class="fn">querySelector</span>(<span class="str">'nav'</span>);
+<span class="kw">const</span> primero    = document.<span class="fn">querySelector</span>(<span class="str">'li:first-child'</span>);
+<span class="kw">const</span> inputEmail = document.<span class="fn">querySelector</span>(<span class="str">'input[type="email"]'</span>);
+
+<span class="cm">// 3. querySelectorAll — todos los que coincidan</span>
+<span class="kw">const</span> tarjetas = document.<span class="fn">querySelectorAll</span>(<span class="str">'.tarjeta'</span>);
+<span class="kw">const</span> links    = document.<span class="fn">querySelectorAll</span>(<span class="str">'a[href]'</span>);
+<span class="kw">const</span> parrafos = document.<span class="fn">querySelectorAll</span>(<span class="str">'main p'</span>);
+
+<span class="cm">// Iterar sobre el resultado de querySelectorAll</span>
+tarjetas.<span class="fn">forEach</span>(<span class="kw">function</span>(tarjeta) {
+  console.<span class="fn">log</span>(tarjeta.textContent);
+});
+
+<span class="cm">// Buena práctica: verificar que el elemento existe</span>
+<span class="kw">const</span> el = document.<span class="fn">querySelector</span>(<span class="str">'#popup'</span>);
+<span class="kw">if</span> (el) {
+  console.<span class="fn">log</span>(<span class="str">'Popup encontrado'</span>);
+}</code></pre>
+
+            <div class="aviso warn">
+                <strong>Buena práctica</strong>
+                Verifica que el elemento existe antes de usarlo:
+                <code class="inline">if (el) { ... }</code>. Si el selector no encuentra nada,
+                devuelve <code class="inline">null</code> y cualquier propiedad sobre
+                <code class="inline">null</code> lanza un error.
+            </div>
+        </section>
+
+        <!-- ============================================================
+     7. MODIFICAR EL DOM
+     ============================================================ -->
+        <section id="modificar">
+            <h2><span class="num">7</span> Modificar el DOM desde JavaScript</h2>
+            <p class="lead">Contenido, estilos, atributos y clases.</p>
+
+            <pre
+                class="code"><code><span class="cm">// ---- Contenido ----</span>
+<span class="kw">const</span> titulo = document.<span class="fn">querySelector</span>(<span class="str">'h1'</span>);
+
+<span class="cm">// textContent — texto plano (seguro, no interpreta HTML)</span>
+titulo.textContent = <span class="str">'Nuevo título'</span>;
+
+<span class="cm">// innerHTML — puede incluir etiquetas HTML</span>
+<span class="cm">// ¡Cuidado! Riesgo de XSS si el texto viene del usuario</span>
+titulo.innerHTML = <span class="str">'&lt;em&gt;Título&lt;/em&gt; en cursiva'</span>;
+
+<span class="cm">// ---- Estilos inline ----</span>
+<span class="kw">const</span> caja = document.<span class="fn">querySelector</span>(<span class="str">'.caja'</span>);
+caja.style.color           = <span class="str">'#c8a227'</span>;
+caja.style.backgroundColor = <span class="str">'#1e3a5f'</span>;
+caja.style.display         = <span class="str">'none'</span>;   <span class="cm">// ocultar</span>
+caja.style.display         = <span class="str">'block'</span>;  <span class="cm">// mostrar</span>
+
+<span class="cm">// ---- Atributos ----</span>
+<span class="kw">const</span> img = document.<span class="fn">querySelector</span>(<span class="str">'img'</span>);
+img.<span class="fn">setAttribute</span>(<span class="str">'alt'</span>, <span class="str">'Descripción nueva'</span>);
+<span class="kw">const</span> claseActual = img.<span class="fn">getAttribute</span>(<span class="str">'class'</span>);</code></pre>
+
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="icono">≡</span> classList — manipular clases CSS</h3>
+                    <pre class="code"><code><span class="kw">const</span> tarjeta = document.<span class="fn">querySelector</span>(<span class="str">'.tarjeta'</span>);
+
+tarjeta.classList.<span class="fn">add</span>(<span class="str">'activo'</span>);      <span class="cm">// agrega</span>
+tarjeta.classList.<span class="fn">remove</span>(<span class="str">'activo'</span>);   <span class="cm">// quita</span>
+tarjeta.classList.<span class="fn">toggle</span>(<span class="str">'expandido'</span>); <span class="cm">// agrega o quita</span>
+
+<span class="kw">if</span> (tarjeta.classList.<span class="fn">contains</span>(<span class="str">'activo'</span>)) {
+  console.<span class="fn">log</span>(<span class="str">'La tarjeta está activa'</span>);
+}</code></pre>
+                </article>
+
+                <article class="card">
+                    <h3><span class="icono">★</span> Ejemplo real: mostrar / ocultar</h3>
+                    <pre class="code"><code><span class="cm">/* En CSS */</span>
+.oculto { display: none; }</code></pre>
+                    <pre class="code"><code><span class="cm">// En JS</span>
+<span class="kw">const</span> panel = document.<span class="fn">querySelector</span>(<span class="str">'.panel'</span>);
+panel.classList.<span class="fn">toggle</span>(<span class="str">'oculto'</span>);</code></pre>
+                    <p><strong>JS solo cambia clases; los estilos viven en CSS.</strong></p>
+                </article>
+            </div>
+
+            <div class="aviso info">
+                <strong>textContent vs innerHTML</strong>
+                <code class="inline">textContent</code> inserta texto plano (seguro: nunca interpreta HTML).
+                <code class="inline">innerHTML</code> puede incluir etiquetas, pero representa un
+                riesgo de <strong>XSS</strong> si el contenido proviene del usuario o de fuentes externas.
+            </div>
+        </section>
+
+        <!-- ============================================================
+     8. EVENTOS
+     ============================================================ -->
+        <section id="eventos">
+            <h2><span class="num">8</span> Escuchar eventos con addEventListener</h2>
+            <p class="lead">Así reacciona la página a lo que hace el usuario.</p>
+
+            <pre class="code"><code><span class="cm">// elemento.addEventListener('evento', función)</span>
+<span class="kw">const</span> boton = document.<span class="fn">querySelector</span>(<span class="str">'#btn-boton'</span>);
+
+boton.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(event) {
+  console.<span class="fn">log</span>(<span class="str">'Clic en:'</span>, event.target);
+  event.target.textContent = <span class="str">'¡Clic!'</span>;
+});
+
+<span class="cm">// Campo de formulario</span>
+<span class="kw">const</span> campo = document.<span class="fn">querySelector</span>(<span class="str">'#nombre'</span>);
+campo.<span class="fn">addEventListener</span>(<span class="str">'input'</span>, <span class="kw">function</span>(event) {
+  console.<span class="fn">log</span>(<span class="str">'Valor:'</span>, event.target.value);
+});
+
+<span class="cm">// DOMContentLoaded — alternativa a defer en &lt;head&gt;</span>
+document.<span class="fn">addEventListener</span>(<span class="str">'DOMContentLoaded'</span>, () => {
+  console.<span class="fn">log</span>(<span class="str">'DOM listo'</span>);
+});</code></pre>
+
+            <div class="tabla-wrap">
+                <table>
+                    <caption>Eventos más comunes</caption>
+                    <thead>
+                        <tr>
+                            <th>Evento</th>
+                            <th>Cuándo ocurre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="inline">click</code></td>
+                            <td>Clic del usuario</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline">input</code></td>
+                            <td>Escribe en un campo</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline">change</code></td>
+                            <td>Cambia y pierde el foco</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline">submit</code></td>
+                            <td>Envía un formulario</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline">keydown</code></td>
+                            <td>Presiona una tecla</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline">mouseover</code></td>
+                            <td>El ratón entra al elemento</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline">focus</code></td>
+                            <td>El campo recibe el foco</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ============================================================
+     9. EJERCICIO
+     ============================================================ -->
+        <section id="ejercicio">
+            <h2><span class="num">9</span> Ejercicio — tarjeta con panel desplegable</h2>
+            <p class="lead">
+                Tarjeta de producto con botón “Ver detalles” que muestra u oculta un panel
+                de información y cambia su propio texto.
+            </p>
+
+            <div class="demo">
+                <div class="tarjeta">
+                    <h3>Auriculares Pro X200</h3>
+                    <p class="precio"><strong>$49.99</strong></p>
+                    <button class="btn-detalle" data-target="detalle-1">Ver detalles</button>
+                    <div class="detalle oculto" id="detalle-1">
+                        <p>Bluetooth 5.0 · 30 h de batería</p>
+                        <p>Cancelación de ruido activa</p>
+                        <p>Compatible con Windows, macOS y Linux</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color:var(--azul); margin-top:1.8rem">styles.css</h3>
+            <pre class="code"><code>.oculto { display: none; }
+
+.tarjeta {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem;
+  max-width: 300px;
+}
+
+<span class="cm">/* .btn-detalle: color, background, cursor — ver styles.css */</span></code></pre>
+
+            <h3 style="color:var(--azul)">index.html — estructura de la tarjeta</h3>
+            <pre class="code"><code><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="atr">lang</span>=<span class="str">"es"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="atr">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="atr">name</span>=<span class="str">"viewport"</span> <span class="atr">content</span>=<span class="str">"width=device-width, initial-scale=1"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;link</span> <span class="atr">rel</span>=<span class="str">"stylesheet"</span> <span class="atr">href</span>=<span class="str">"styles.css"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Tarjetas de producto<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="atr">class</span>=<span class="str">"tarjeta"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Auriculares Pro X200<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p</span> <span class="atr">class</span>=<span class="str">"precio"</span><span class="tag">&gt;&lt;strong&gt;</span>$49.99<span class="tag">&lt;/strong&gt;&lt;/p&gt;</span>
+
+    <span class="tag">&lt;button</span> <span class="atr">class</span>=<span class="str">"btn-detalle"</span> <span class="atr">data-target</span>=<span class="str">"detalle-1"</span><span class="tag">&gt;</span>
+      Ver detalles
+    <span class="tag">&lt;/button&gt;</span>
+
+    <span class="tag">&lt;div</span> <span class="atr">class</span>=<span class="str">"detalle oculto"</span> <span class="atr">id</span>=<span class="str">"detalle-1"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Bluetooth 5.0 · 30 h de batería<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Cancelación de ruido activa<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Compatible con Windows, macOS y Linux<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;script</span> <span class="atr">src</span>=<span class="str">"js/app.js"</span> <span class="atr">defer</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+
+            <h3 style="color:var(--azul)">js/app.js — solución</h3>
+            <pre class="code"><code><span class="kw">const</span> botones = document.<span class="fn">querySelectorAll</span>(<span class="str">'.btn-detalle'</span>);
+
+botones.<span class="fn">forEach</span>(<span class="kw">function</span>(boton) {
+  boton.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(event) {
+
+    <span class="kw">const</span> targetId = event.target.<span class="fn">getAttribute</span>(<span class="str">'data-target'</span>);
+    <span class="kw">const</span> panel    = document.<span class="fn">getElementById</span>(targetId);
+
+    panel.classList.<span class="fn">toggle</span>(<span class="str">'oculto'</span>);
+
+    <span class="kw">if</span> (panel.classList.<span class="fn">contains</span>(<span class="str">'oculto'</span>)) {
+      event.target.textContent = <span class="str">'Ver detalles'</span>;
+    } <span class="kw">else</span> {
+      event.target.textContent = <span class="str">'Ocultar'</span>;
+    }
+  });
+});</code></pre>
+
+            <h3 style="color:var(--azul)">Línea por línea</h3>
+            <ol class="pasos">
+                <li><code class="inline">querySelectorAll</code> → todos los botones <code
+                        class="inline">.btn-detalle</code>.</li>
+                <li><code class="inline">forEach</code> + listener de <code class="inline">click</code> en cada botón.
+                </li>
+                <li><code class="inline">getAttribute('data-target')</code> → ID del panel que debe abrir.</li>
+                <li><code class="inline">classList.toggle('oculto')</code> → muestra u oculta el panel.</li>
+                <li><code class="inline">classList.contains</code> → decide el nuevo texto del botón.</li>
+            </ol>
+
+            <div class="aviso info">
+                <strong>Patrón data-*</strong>
+                <code class="inline">data-target</code> es un atributo personalizado de HTML5.
+                Se lee desde JavaScript con <code class="inline">getAttribute</code>. Permite
+                que un mismo script sirva para varias tarjetas sin duplicar código.
+            </div>
+
+            <div class="aviso warn">
+                <strong>Para experimentar</strong>
+                ¿Qué pasa si omites <code class="inline">data-target</code>?
+                ¿Y si el <code class="inline">id</code> no existe?
+                (Pista: <code class="inline">getAttribute</code> devuelve
+                <code class="inline">null</code> y <code class="inline">getElementById</code>
+                también → error en consola).
+            </div>
+        </section>
+
+        <!-- ============================================================
+     10. REPASO
+     ============================================================ -->
+        <section id="repaso">
+            <h2><span class="num">10</span> Repaso y preguntas frecuentes</h2>
+            <p class="lead">Resumen de conceptos clave de la clase.</p>
+
+            <div class="tabla-wrap">
+                <table>
+                    <caption>Resumen de conceptos clave</caption>
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Idea clave</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tríada HTML/CSS/JS</td>
+                            <td>HTML = estructura, CSS = presentación, JS = comportamiento.</td>
+                        </tr>
+                        <tr>
+                            <td>External script</td>
+                            <td>Archivo <code class="inline">.js</code> separado con <code
+                                    class="inline">&lt;script src="..." defer&gt;</code>. Forma recomendada.</td>
+                        </tr>
+                        <tr>
+                            <td>defer</td>
+                            <td>Descarga en paralelo con el HTML; ejecuta después del DOM. No bloquea.</td>
+                        </tr>
+                        <tr>
+                            <td>console.log</td>
+                            <td>Herramienta principal para depurar. F12 → pestaña Console.</td>
+                        </tr>
+                        <tr>
+                            <td>DOM</td>
+                            <td>Árbol de nodos que el navegador construye desde el HTML. Punto de entrada: <code
+                                    class="inline">document</code>.</td>
+                        </tr>
+                        <tr>
+                            <td>querySelector</td>
+                            <td>Selecciona el primer elemento que coincida con un selector CSS.</td>
+                        </tr>
+                        <tr>
+                            <td>querySelectorAll</td>
+                            <td>Devuelve una NodeList con todos los elementos que coincidan.</td>
+                        </tr>
+                        <tr>
+                            <td>classList.toggle</td>
+                            <td>Agrega la clase si no está; la quita si ya está.</td>
+                        </tr>
+                        <tr>
+                            <td>addEventListener</td>
+                            <td><code class="inline">elemento.addEventListener('click', función)</code>. Forma correcta
+                                de escuchar eventos.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:var(--azul); margin-top:2rem">Preguntas de repaso</h3>
+
+            <details>
+                <summary>1. ¿Cuál es la diferencia entre defer y async? ¿Cuándo usar cada uno?</summary>
+                <p>
+                    <strong>defer:</strong> carga en paralelo, ejecuta después del DOM, respeta el orden.
+                    Usar para scripts que manipulan el DOM.<br>
+                    <strong>async:</strong> carga en paralelo, ejecuta apenas termina la descarga,
+                    sin garantía de orden. Usar solo para scripts independientes como analíticas.
+                </p>
+            </details>
+
+            <details>
+                <summary>2. ¿Qué diferencia hay entre textContent e innerHTML?</summary>
+                <p>
+                    <code class="inline">textContent</code> inserta texto plano (seguro: nunca interpreta HTML).
+                    <code class="inline">innerHTML</code> puede incluir etiquetas HTML, pero representa
+                    un riesgo de XSS si el contenido proviene del usuario o de fuentes externas.
+                </p>
+            </details>
+
+            <details>
+                <summary>3. ¿Por qué se recomienda classList.toggle en vez de cambiar style.display directamente?
+                </summary>
+                <p>
+                    Porque separa responsabilidades: la presentación vive en el CSS (clase
+                    <code class="inline">.oculto</code>) y el comportamiento en el JS (solo aplica o
+                    quita la clase). Cambiar <code class="inline">style.display</code> mezcla lógica de
+                    estilo dentro del script y dificulta el mantenimiento.
+                </p>
+            </details>
+
+            <details>
+                <summary>4. ¿Por qué se recomienda <code class="inline">defer</code> y no poner el script al final del
+                    body?</summary>
+                <p>
+                    Ambas soluciones funcionan. <code class="inline">defer</code> permite declarar el
+                    script en el <code class="inline">&lt;head&gt;</code> (más ordenado), descarga en
+                    paralelo sin bloquear el render y garantiza que el DOM esté completo antes de
+                    ejecutar. Poner el script al final del <code class="inline">&lt;body&gt;</code> también
+                    funciona, pero retrasa el inicio de la descarga.
+                </p>
+            </details>
+
+            <details>
+                <summary>5. ¿Qué devuelve querySelector si no encuentra nada?</summary>
+                <p>
+                    Devuelve <code class="inline">null</code>. Por eso se recomienda verificar
+                    <code class="inline">if (el) { ... }</code> antes de acceder a sus propiedades.
+                    <code class="inline">querySelectorAll</code>, en cambio, devuelve una NodeList
+                    vacía (no <code class="inline">null</code>), así que iterar sobre ella es seguro.
+                </p>
+            </details>
+        </section>
+
+        <!-- ============================================================
+     11. PRÓXIMA CLASE
+     ============================================================ -->
+        <section id="proxima">
+            <h2><span class="num">11</span> Próxima clase — Variables y funciones</h2>
+            <p class="lead">Clase 21 · Jueves 01 de octubre</p>
+
+            <div class="grid">
+                <article class="card">
+                    <h3><span class="icono">▶</span> Temas que veremos</h3>
+                    <ul>
+                        <li><code class="inline">var</code>, <code class="inline">let</code> y <code
+                                class="inline">const</code> — diferencias fundamentales</li>
+                        <li>Tipos de datos primitivos en JavaScript</li>
+                        <li>Template literals con <code class="inline">${...}</code></li>
+                        <li>Scope de bloque, función y global</li>
+                        <li>Funciones: declaración, expresión y arrow</li>
+                        <li>Parámetros, valores por defecto y <code class="inline">return</code></li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3><span class="icono">✎</span> Para practicar antes del jueves</h3>
+                    <ol style="padding-left:1.1rem; font-size:.9rem; color:var(--gris)">
+                        <li>Terminar el ejercicio del panel desplegable: agregar 2 tarjetas más, cada una con su botón y
+                            panel separado.</li>
+                        <li>Verificar en la consola que no haya errores (F12).</li>
+                        <li>Experimentar: ¿qué pasa si omites <code class="inline">data-target</code>? ¿Y si el ID no
+                            existe?</li>
+                    </ol>
+                </article>
+
+                <article class="card">
+                    <h3><span class="icono">🎒</span> Traer</h3>
+                    <p>Computadora cargada con VS Code y el ejercicio de hoy listo para mostrar
+                        al inicio de la clase del jueves.</p>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+     PIE
+     ============================================================ -->
+    <footer>
+        <p>
+            <strong>UNIVO</strong> · Diseño Web Adaptable — Sección A ·
+            Clase 18: Declaración de scripts JavaScript
+        </p>
+        <p>¡A practicar! JavaScript abre las puertas a la interactividad.</p>
+    </footer>
+
+    <!-- ============================================================
+     JS SOLO PARA LA DEMO EN VIVO DEL EJERCICIO
+     (en el proyecto real va en js/app.js)
+     ============================================================ -->
+    <script>
+        const botones = document.querySelectorAll('.btn-detalle');
+
+        botones.forEach(function (boton) {
+            boton.addEventListener('click', function (event) {
+                const targetId = event.target.getAttribute('data-target');
+                const panel = document.getElementById(targetId);
+
+                if (!panel) {
+                    console.error('No se encontró el panel con id:', targetId);
+                    return;
+                }
+
+                panel.classList.toggle('oculto');
+
+                event.target.textContent = panel.classList.contains('oculto')
+                    ? 'Ver detalles'
+                    : 'Ocultar';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

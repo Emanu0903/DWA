@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perfil profesional - Práctica Clase 17">
+    <title>Perfil Profesional | Clase 17</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- ESTE ARCHIVO DEBE SER CREADO POR EL ESTUDIANTE -->
+     <link rel="stylesheet" href="/Class-17/style.css">
+</head>
+<body>
+
+    <!--
+      HERO
+      En styles.css usar img/fondo.webp como fondo,
+      overlay rgba(0,0,0,.55) y min-height: 70vh.
+    -->
+    <header class="hero">
+        <div class="hero-contenido">
+            <!-- Above the fold: NO usar loading="lazy" -->
+            <img
+                class="foto-perfil"
+                src="img/perfil.webp"
+                width="600"
+                height="600"
+                alt="Desarrollador trabajando en su computadora"
+            >
+
+            <div class="hero-texto">
+                <p class="etiqueta">Desarrollador Web</p>
+                <h1>Nombre del estudiante</h1>
+                <p class="descripcion">
+                    Escribe aquí una breve descripción de tu perfil profesional,
+                    habilidades e intereses.
+                </p>
+                <a class="boton" href="#proyectos">Ver proyectos</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="seccion" id="sobre-mi">
+            <h2>Sobre mí</h2>
+            <p>
+                Reemplaza este contenido con una presentación personal:
+                formación, habilidades, intereses y objetivos profesionales.
+            </p>
+        </section>
+
+        <section class="seccion seccion-proyectos" id="proyectos">
+            <h2>Mis proyectos</h2>
+
+            <!--
+              Debe funcionar primero con FLEXBOX.
+              Después mejorar con GRID usando @supports.
+            -->
+            <div class="proyectos">
+
+                <article class="proyecto">
+                    <img
+                        src="img/proyecto-1.webp"
+                        width="900"
+                        height="600"
+                        loading="lazy"
+                        alt="Desarrollador trabajando en un sitio web adaptable"
+                    >
+                    <div class="proyecto-contenido">
+                        <h3>Sitio Web Adaptable</h3>
+                        <p>Describe aquí el objetivo y las tecnologías utilizadas.</p>
+                    </div>
+                </article>
+
+                <article class="proyecto">
+                    <img
+                        src="img/proyecto-2.webp"
+                        width="900"
+                        height="600"
+                        loading="lazy"
+                        alt="Computadora portátil utilizada para desarrollo web"
+                    >
+                    <div class="proyecto-contenido">
+                        <h3>Aplicación Web</h3>
+                        <p>Describe aquí el objetivo y las tecnologías utilizadas.</p>
+                    </div>
+                </article>
+
+                <article class="proyecto">
+                    <img
+                        src="img/proyecto-3.webp"
+                        width="900"
+                        height="600"
+                        loading="lazy"
+                        alt="Programador trabajando con código"
+                    >
+                    <div class="proyecto-contenido">
+                        <h3>Proyecto Frontend</h3>
+                        <p>Describe aquí el objetivo y las tecnologías utilizadas.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Clase 17 · Diseño Web Adaptable · 2026</p>
+    </footer>
+
+</body>
+</html>
